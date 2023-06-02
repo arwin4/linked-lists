@@ -5,6 +5,11 @@ class LinkedList {
   constructor(name) {
     this.name = name;
     this.headNode = null;
+    this.listSize = 0;
+  }
+
+  size() {
+    return this.listSize;
   }
 
   prepend(value) {
@@ -12,6 +17,7 @@ class LinkedList {
     newNode.value = value;
     newNode.nextNode = this.headNode;
     this.headNode = newNode;
+    this.listSize += 1;
   }
 
   head() {
