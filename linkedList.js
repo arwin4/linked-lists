@@ -64,6 +64,11 @@ class LinkedList {
     return null;
   }
 
+  contains(value) {
+    if (this.find(value) !== null) return true;
+    return false;
+  }
+
   prepend(value) {
     // Add a node to the start of the list
 
