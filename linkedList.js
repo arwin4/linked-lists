@@ -16,6 +16,10 @@ class LinkedList {
     this.listSize += 1;
   }
 
+  #decreaseSizeByOne() {
+    this.listSize -= 1;
+  }
+
   head() {
     // Return the first node
     return this.headNode;
@@ -63,6 +67,30 @@ class LinkedList {
     }
 
     this.#increaseSizeByOne();
+  }
+
+  pop() {
+    // Delete and return the last item of the list
+    // (The returned value is a temporary copy for confirmation only.)
+
+    if (this.size() === 0) return null;
+
+    let nodeCopy;
+    if (this.size() === 1) {
+      nodeCopy = this.headNode;
+      this.headNode = null;
+    } else {
+      // List size >1
+      let currentNode = this.headNode;
+      while (currentNode.nextNode.nextNode !== null) {
+        currentNode = currentNode.nextNode;
+      }
+      nodeCopy = currentNode.nextNode;
+      currentNode.nextNode = null;
+    }
+
+    this.#decreaseSizeByOne();
+    return nodeCopy;
   }
 }
 
