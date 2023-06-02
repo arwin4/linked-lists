@@ -52,6 +52,18 @@ class LinkedList {
     return currentNode;
   }
 
+  find(value) {
+    // Return the index of the node with the given value, if it exists
+    if (this.size() === 0) return null;
+
+    let currentNode = this.headNode;
+    for (let i = 0; i < this.size(); i += 1) {
+      if (currentNode.value === value) return i;
+      currentNode = currentNode.nextNode;
+    }
+    return null;
+  }
+
   prepend(value) {
     // Add a node to the start of the list
 
