@@ -40,6 +40,18 @@ class LinkedList {
     return currentNode;
   }
 
+  at(index) {
+    // Zero-indexed
+
+    if (index >= this.size()) return null;
+
+    let currentNode = this.headNode;
+    for (let i = 0; i < index; i += 1) {
+      currentNode = currentNode.nextNode;
+    }
+    return currentNode;
+  }
+
   prepend(value) {
     // Add a node to the start of the list
 
