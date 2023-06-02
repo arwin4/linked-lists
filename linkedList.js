@@ -16,6 +16,11 @@ class LinkedList {
     this.listSize += 1;
   }
 
+  head() {
+    // Return the first node
+    return this.headNode;
+  }
+
   tail() {
     // Traverse the list and return the last node
 
@@ -58,11 +63,6 @@ class LinkedList {
     }
 
     this.#increaseSizeByOne();
-  }
-
-  head() {
-    // Return the first node
-    return this.headNode;
   }
 }
 
