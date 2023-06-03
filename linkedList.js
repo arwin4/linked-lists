@@ -3,6 +3,7 @@ import Node from './node.js';
 
 class LinkedList {
   constructor(name) {
+    // TODO: prevent direct setting
     this.name = name;
     this.headNode = null;
     this.listSize = 0;
@@ -70,6 +71,7 @@ class LinkedList {
   }
 
   toString() {
+    // FIXME: [object Object] instead of null
     // Return a string of the complete list
     let currentNode = this.headNode;
     let string = '';
@@ -131,6 +133,34 @@ class LinkedList {
 
     this.#decreaseSizeByOne();
     return nodeCopy;
+  }
+
+  insertAt(value, index) {
+    // Inserts a node at the given index.
+    // Same as 'insertBefore', because it shifts the node at the given index up
+    // the list.
+    // Will accept index values of non-existent nodes by inserting at the start
+    // or end of the list.
+
+    if (index <= 0) {
+      this.prepend(value);
+      return;
+    }
+    if (index >= this.size()) {
+      this.append(value);
+      return;
+    }
+
+    const newNode = new Node();
+    newNode.value = value;
+
+    // NOTE: at() is called twice here, which essentially doubles the time
+    // needed to run this method, compared to a loop that remembers the node at
+    // index - 1 on its way to the given index.
+    newNode.nextNode = this.at(index); // Link the old node occupying this index
+    this.at(index - 1).nextNode = newNode; // Update previous node link
+
+    this.#increaseSizeByOne();
   }
 }
 
