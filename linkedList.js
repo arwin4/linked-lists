@@ -162,6 +162,22 @@ class LinkedList {
 
     this.#increaseSizeByOne();
   }
+
+  removeAt(index) {
+    // Remove the node at the given index
+
+    // Do nothing if index does not exist
+    if (index < 0 || index + 1 > this.size()) return;
+
+    if (index === 0) {
+      this.headNode = this.at(1);
+    } else {
+      const previousNode = this.at(index - 1);
+      const nodeAfter = previousNode.nextNode.nextNode;
+      previousNode.nextNode = nodeAfter;
+    }
+    this.#decreaseSizeByOne();
+  }
 }
 
 export default LinkedList;
