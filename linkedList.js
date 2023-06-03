@@ -154,11 +154,14 @@ class LinkedList {
     const newNode = new Node();
     newNode.value = value;
 
-    // NOTE: at() is called twice here, which essentially doubles the time
-    // needed to run this method, compared to a loop that remembers the node at
-    // index - 1 on its way to the given index.
-    newNode.nextNode = this.at(index); // Link the old node occupying this index
-    this.at(index - 1).nextNode = newNode; // Update previous node link
+    // newNode.nextNode = this.at(index); // Link the old node occupying this index
+    // this.at(index - 1).nextNode = newNode; // Update previous node link
+
+    const previousNode = this.at(index - 1);
+    const nodeToMove = previousNode.nextNode;
+
+    newNode.nextNode = nodeToMove; // Link the old node occupying this index
+    previousNode.nextNode = newNode; // Update previous node link
 
     this.#increaseSizeByOne();
   }
