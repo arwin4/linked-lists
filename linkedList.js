@@ -154,9 +154,6 @@ class LinkedList {
     const newNode = new Node();
     newNode.value = value;
 
-    // newNode.nextNode = this.at(index); // Link the old node occupying this index
-    // this.at(index - 1).nextNode = newNode; // Update previous node link
-
     const previousNode = this.at(index - 1);
     const nodeToMove = previousNode.nextNode;
 
