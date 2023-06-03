@@ -69,6 +69,17 @@ class LinkedList {
     return false;
   }
 
+  toString() {
+    // Return a string of the complete list
+    let currentNode = this.headNode;
+    let string = '';
+    for (let i = 0; i < this.size(); i += 1) {
+      string += `( ${currentNode.value} ) -> `;
+      currentNode = currentNode.nextNode;
+    }
+    return string + currentNode; // currentNode = null, end of list
+  }
+
   prepend(value) {
     // Add a node to the start of the list
 
