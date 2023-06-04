@@ -89,6 +89,7 @@ class LinkedList {
     newNode.value = value;
     newNode.nextNode = this.#headNode;
     this.#headNode = newNode;
+
     this.#increaseSizeByOne();
   }
 
