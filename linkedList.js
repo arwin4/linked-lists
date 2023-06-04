@@ -2,38 +2,39 @@
 import Node from './node.js';
 
 class LinkedList {
+  #headNode = null;
+
+  #listSize = 0;
+
   constructor(name) {
-    // TODO: prevent setting headNode and listSize from outside class
     this.name = name;
-    this.headNode = null;
-    this.listSize = 0;
   }
 
   size() {
-    return this.listSize;
+    return this.#listSize;
   }
 
   #increaseSizeByOne() {
-    this.listSize += 1;
+    this.#listSize += 1;
   }
 
   #decreaseSizeByOne() {
-    this.listSize -= 1;
+    this.#listSize -= 1;
   }
 
   head() {
     // Return the first node
-    return this.headNode;
+    return this.#headNode;
   }
 
   tail() {
     // Traverse the list and return the last node
 
     // List is empty
-    if (this.headNode === null) return this.headNode;
+    if (this.#headNode === null) return this.#headNode;
 
     // List isn't empty
-    let currentNode = this.headNode;
+    let currentNode = this.#headNode;
     while (currentNode.nextNode !== null) {
       // Keep going until the node that points to null is found
       currentNode = currentNode.nextNode;
@@ -42,11 +43,11 @@ class LinkedList {
   }
 
   at(index) {
-    // Zero-indexed
+    // Return the value of the node at given index
 
     if (index >= this.size()) return null;
 
-    let currentNode = this.headNode;
+    let currentNode = this.#headNode;
     for (let i = 0; i < index; i += 1) {
       currentNode = currentNode.nextNode;
     }
@@ -57,7 +58,7 @@ class LinkedList {
     // Return the index of the node with the given value, if it exists
     if (this.size() === 0) return null;
 
-    let currentNode = this.headNode;
+    let currentNode = this.#headNode;
     for (let i = 0; i < this.size(); i += 1) {
       if (currentNode.value === value) return i;
       currentNode = currentNode.nextNode;
@@ -71,9 +72,8 @@ class LinkedList {
   }
 
   toString() {
-    // FIXME: [object Object] instead of null
     // Return a string of the complete list
-    let currentNode = this.headNode;
+    let currentNode = this.#headNode;
     let string = '';
     for (let i = 0; i < this.size(); i += 1) {
       string += `( ${currentNode.value} ) -> `;
@@ -87,8 +87,8 @@ class LinkedList {
 
     const newNode = new Node();
     newNode.value = value;
-    newNode.nextNode = this.headNode;
-    this.headNode = newNode;
+    newNode.nextNode = this.#headNode;
+    this.#headNode = newNode;
     this.#increaseSizeByOne();
   }
 
@@ -102,7 +102,7 @@ class LinkedList {
     const tail = this.tail();
     if (tail === null) {
       // If there's no tail (the list is empty) make this node the first
-      this.headNode = newNode;
+      this.#headNode = newNode;
     } else {
       // Point the current tail to this new tail
       tail.nextNode = newNode;
@@ -119,11 +119,11 @@ class LinkedList {
 
     let nodeCopy;
     if (this.size() === 1) {
-      nodeCopy = this.headNode;
-      this.headNode = null;
+      nodeCopy = this.#headNode;
+      this.#headNode = null;
     } else {
       // List size >1
-      let currentNode = this.headNode;
+      let currentNode = this.#headNode;
       while (currentNode.nextNode.nextNode !== null) {
         currentNode = currentNode.nextNode;
       }
@@ -170,12 +170,13 @@ class LinkedList {
     if (index < 0 || index + 1 > this.size()) return;
 
     if (index === 0) {
-      this.headNode = this.at(1);
+      this.#headNode = this.at(1);
     } else {
       const previousNode = this.at(index - 1);
       const nodeAfter = previousNode.nextNode.nextNode;
       previousNode.nextNode = nodeAfter;
     }
+
     this.#decreaseSizeByOne();
   }
 }
