@@ -3,7 +3,7 @@ import Node from './node.js';
 
 class LinkedList {
   constructor(name) {
-    // TODO: prevent direct setting
+    // TODO: prevent setting headNode and listSize from outside class
     this.name = name;
     this.headNode = null;
     this.listSize = 0;
