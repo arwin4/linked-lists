@@ -45,7 +45,7 @@ class LinkedList {
   at(index) {
     // Return the value of the node at given index
 
-    if (index >= this.size()) return null;
+    if (index < 0 || index >= this.size()) return null;
 
     let currentNode = this.#headNode;
     for (let i = 0; i < index; i += 1) {
